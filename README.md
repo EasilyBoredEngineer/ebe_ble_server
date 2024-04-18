@@ -4,6 +4,8 @@ Sends a series of sensor values from an existing esphome device to a device runn
 
 Inspired by a private repository created by @syssi, as well as @jesse_rocks esp32_controller. 
 
+Conducted as a component of an APNIC Foundation grant designed to improve telecommunications to a small indigenous community in Australia.
+
 Lots more work required to make it more adaptable.
 
 The values are received by this repository as a byte array, and then used to populate a struct called MyData -
