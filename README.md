@@ -11,6 +11,7 @@ Lots more work required to make it more adaptable.
 The values are received by this repository as a byte array, and then used to populate a struct called MyData -
 
   //this is the structure that is used to carry the data sent by the client.
+
   struct MyData {
   float float1_;  // 4 bytes for the first float
   float float2_;  
