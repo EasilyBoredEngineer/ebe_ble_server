@@ -1,7 +1,7 @@
 substitutions:
   name: example-server
   device_description: "Example to receive data from ble client"
-  external_components_source: https://github.com/EasilyBoredEngineer/ebe_ble_server.git
+  external_components_source: github://EasilyBoredEngineer/ebe_ble_server@main
 
 esphome:
   name: ${name}
