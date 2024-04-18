@@ -1,2 +1,43 @@
 # ebe_ble_server
  
+Simply add the following to your client yaml:-
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 320ms
+    window: 320ms
+  on_ble_advertise:
+    then:
+      - lambda: |-
+            ESP_LOGI("ble_adv", "New server found");
+            ESP_LOGI("ble_adv", "  Name: %s", x.get_name().c_str());
+            ESP_LOGI("ble_adv", "  MAC address: %s", x.address_str().c_str());
+            ESP_LOGD("ble_adv", "  Advertised service UUIDs:");
+            for (auto uuid : x.get_service_uuids()) {
+              ESP_LOGD("ble_adv", "    - %s", uuid.to_string().c_str());
+            }
+
+ble_client:
+  - mac_address: 94:E6:86:01:F0:96 //change to the mac of the device you wish to connect yo
+    id: esp_rcvr
+    auto_connect: true
+
+interval:
+
+  - interval: 2s
+    then:
+          - ble_client.ble_write:
+              id: esp_rcvr
+              service_uuid: 89a40b48-200b-47d5-9429-000000000000
+              characteristic_uuid: 89a40b48-200b-47d5-9429-000900000000
+              # A lambda returning an std::vector<uint8_t>.
+              value: !lambda |-
+                        // Create an array of three floats
+                        float floats[4] = {id(your_sensor_id_1).state, id(your_sensor_id_1).state, id(your_sensor_id_1).state, id(your_sensor_id_1).state};
+
+                        // Convert the floats to a byte array
+                        std::vector<unsigned char> byteArray(sizeof(floats));
+                        std::memcpy(byteArray.data(), &floats, sizeof(floats));
+
+                        // Write the byte array to the BLE characteristic
+                        return {byteArray};

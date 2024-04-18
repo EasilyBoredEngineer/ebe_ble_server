@@ -1,0 +1,40 @@
+substitutions:
+  name: example-server
+  device_description: "Example to receive data from ble client"
+  external_components_source: https://github.com/EasilyBoredEngineer/ebe_ble_server.git
+
+esphome:
+  name: ${name}
+
+esp32:
+  board: esp32doit-devkit-v1
+  framework:
+    type: esp-idf
+
+external_components:
+  - source: ${external_components_source}
+    refresh: 0s
+
+api:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  use_address: 10.2.88.249
+
+ota:
+
+switch:
+  - platform: restart
+    name: "restart board"
+    id: board_reset
+    restore_mode: ALWAYS_OFF
+
+
+esp32_ble_server:
+  id: bms0
+  model: ebe
+  manufacturer: ebe
+
+ebe_ble_server:
+  ble_server_id: bms0  
