@@ -13,6 +13,7 @@ The values are received by this repository as a byte array, and then used to pop
   //this is the structure that is used to carry the data sent by the client.
 
   struct MyData {
+  
   float float1_;  // 4 bytes for the first float
   float float2_;  
   float float3_;  
