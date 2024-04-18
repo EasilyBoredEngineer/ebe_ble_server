@@ -15,6 +15,7 @@ The values are received by this repository as a byte array, and then used to pop
   struct MyData {
   
   float float1_;  // 4 bytes for the first float
+  
   float float2_;  
   float float3_;  
   float float4_;
