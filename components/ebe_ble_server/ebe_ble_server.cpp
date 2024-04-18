@@ -137,7 +137,7 @@ void EBEBleServer::process_incoming_data_() {
     if (incoming_data_.size() <= sizeof(MyData)) {
         std::copy(this->incoming_data_.begin(), this->incoming_data_.end(), byteArray);
         std::memcpy(&data_, byteArray, sizeof(MyData));
-        ESP_LOGD(TAG, "float one is: %f, float two is %f, float 3 is %f, float 4 is %f, int 1 is %d", data_.float1_, data_.float2_, data_.float3_, data_.float4_, data_.int1_);
+        ESP_LOGD(TAG, "float one is: %f, float two is %f, float 3 is %f, float 4 is %f", data_.float1_, data_.float2_, data_.float3_, data_.float4_);
     } else {
         ESP_LOGD(TAG, "Too Large: ");
     }
