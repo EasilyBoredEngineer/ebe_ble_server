@@ -13,21 +13,20 @@ namespace ebe_ble_server {
 
 using namespace esp32_ble_server;
 
-//place your services and characteristics here. 
-//my example code only implements one service and one characteristic.
+// place your services and characteristics here.
+// my example code only implements one service and one characteristic.
 static const char *const MY_SERVICE_UUID = "89a40b48-200b-47d5-9429-000000000000";
 static const char *const MY_CHARACTERISTIC_UUID = "89a40b48-200b-47d5-9429-000900000000";
 
 class EBEBleServer : public Component, public BLEServiceComponent {
  public:
-
-  //this is the structure that is used to carry the data sent by the client.
+  // this is the structure that is used to carry the data sent by the client.
   struct MyData {
-  float float1_;  // 4 bytes for the first float
-  float float2_;  
-  float float3_;  
-  float float4_;
-  int int1_;
+    float float1_;  // 4 bytes for the first float
+    float float2_;
+    float float3_;
+    float float4_;
+    int int1_;
   };
 
   EBEBleServer();
@@ -38,7 +37,6 @@ class EBEBleServer : public Component, public BLEServiceComponent {
   void on_client_disconnect() override;
   void on_client_connect() override;
   const unsigned long check_interval = 60000;  // 60 seconds
- 
 
   float get_setup_priority() const override;
   void start() override;
@@ -47,7 +45,7 @@ class EBEBleServer : public Component, public BLEServiceComponent {
   MyData data_;
   long last_check_time;
   long last_data_time;
-  //ESP32BLE *ble_;
+  // ESP32BLE *ble_;
 
  protected:
   enum State : uint8_t {
@@ -60,7 +58,7 @@ class EBEBleServer : public Component, public BLEServiceComponent {
 
   std::vector<uint8_t> incoming_data_;
 
-  //std::shared_ptr<esphome::esp32_ble_server::BLEService> service_;
+  // std::shared_ptr<esphome::esp32_ble_server::BLEService> service_;
   BLEService *service_;
   BLECharacteristic *my_characteristic_;
 
