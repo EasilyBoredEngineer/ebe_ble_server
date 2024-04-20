@@ -36,4 +36,4 @@ esp32_ble_server:
   manufacturer: ebe
 
 ebe_ble_server:
-  ble_server_id: bms0  
+  ble_server_id: bms0
